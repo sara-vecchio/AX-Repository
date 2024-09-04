@@ -1,0 +1,50 @@
+# General information
+name: "hello-world-ax"
+version: 0.0.1
+type: lib
+keywords:
+  - library
+  - tiax
+author: <Name>
+# Description will be displayed in the apax extension
+description: <Description for your tiax-library>
+# Targets which will be compiled with 'apax build'
+targets:
+  - "1500"
+  - "llvm"
+# Install settings
+installStrategy: strict
+apaxVersion: 3.2.1
+# Dependencies
+devDependencies:
+  "@ax/sdk": ^2405.0.0
+  "@ax/ax2tia": ^9.0.0
+
+# Environment variables
+variables:
+  # an arbitrary directory that can be chosen freely
+  PATH_NAME: "./bin/handover-folder"
+  # you can change the predefined output path where the TIA Portal library will be generated
+  TIA_GLOBAL_LIB_PATH: "./tiap-library"
+  # set the path to your local TIA Portal installation
+  TIA_INSTALL_PATH: "C:\\Program Files\\Siemens\\Automation\\Portal V19"
+  # remove, if you do not want to allow debugging of your code
+  APAX_BUILD_ARGS:
+    - "--debug"
+
+# Apax scripts
+scripts:
+  # transfer a AX Library to handover library documents for a TIA Libray
+  export-tia-handover-documents: ax2tia -i ./bin/1500/*.lib -o "$PATH_NAME"
+  # convert library handover documents into a global library for the TIA Portal.
+  import-handover-documents-to-tia: '"$TIA_INSTALL_PATH\\bin\\Siemens.Simatic.Lang.Library.Importer.exe"
+    -i "$PATH_NAME" -o "$TIA_GLOBAL_LIB_PATH" -u'
+  create-tialib:
+    - apax build
+    - apax export-tia-handover-documents
+    - apax import-handover-documents-to-tia
+
+# Files, which will be shipped with the library
+files:
+  - bin
+  - tiap-library
