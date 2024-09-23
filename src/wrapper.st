@@ -57,6 +57,7 @@ NAMESPACE MotorLibrary
         END_VAR 
         IF aumenta AND NOT started THEN 
             measurement.Start();      
+            
             started:= TRUE;  
         ELSIF aumenta THEN
             inSeconds:=measurement.GetElapsedSeconds();
