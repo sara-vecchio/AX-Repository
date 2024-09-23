@@ -1,26 +1,31 @@
 # General information
 name: "hello-world-ax"
-version: 0.0.1
+version: 0.1.0
 type: lib
 keywords:
   - library
   - tiax
-author: <Name>
+author: Sara
 # Description will be displayed in the apax extension
 description: <Description for your tiax-library>
 # Targets which will be compiled with 'apax build'
 targets:
   - "1500"
   - "llvm"
+
+# non serve più neppure per il download diretto, la distinzione per il plcsim
+# llvm è il target interno per le unit testing, perchè ax non si appoggia all'istanza di PLC simulato
+
 # Install settings
 installStrategy: strict
 apaxVersion: 3.2.1
 # Dependencies
 devDependencies:
-  "@ax/sdk": ^2405.0.0
-  "@ax/ax2tia": ^9.0.0
+  "@ax/sdk": ^2405.0.0 #sempre necessario
+  "@ax/ax2tia": ^9.0.0 #necessario per le librerie
+  # l'apice mi dice che prendo l'ultima di quella serie, quindi non major release
 
-# Environment variables
+  # Environment variables
 variables:
   # an arbitrary directory that can be chosen freely
   PATH_NAME: "./bin/handover-folder"
@@ -31,14 +36,14 @@ variables:
   # remove, if you do not want to allow debugging of your code
   APAX_BUILD_ARGS:
     - "--debug"
+    #serve per poter andare online in AX nel blocco di TIA usato come software unit
 
-# Apax scripts
+    # Apax scripts
 scripts:
   # transfer a AX Library to handover library documents for a TIA Libray
   export-tia-handover-documents: ax2tia -i ./bin/1500/*.lib -o "$PATH_NAME"
   # convert library handover documents into a global library for the TIA Portal.
-  import-handover-documents-to-tia: '"$TIA_INSTALL_PATH\\bin\\Siemens.Simatic.Lang.Library.Importer.exe"
-    -i "$PATH_NAME" -o "$TIA_GLOBAL_LIB_PATH" -u'
+  import-handover-documents-to-tia: '"$TIA_INSTALL_PATH\\bin\\Siemens.Simatic.Lang.Library.Importer.exe" -i "$PATH_NAME" -o "$TIA_GLOBAL_LIB_PATH" '
   create-tialib:
     - apax build
     - apax export-tia-handover-documents
@@ -48,3 +53,6 @@ scripts:
 files:
   - bin
   - tiap-library
+dependencies:
+ # "@ax/system-counters": ^7.0.17
+  "@ax/simatic-1500-clocks": ^7.0.4

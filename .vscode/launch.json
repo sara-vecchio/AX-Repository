@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${workspaceFolder}",
             "ip": "192.168.0.1",
-            "symbolsPath": "${workspaceFolder}/bin/1500"
+            "symbolsPath": "${workspaceFolder}/bin/1500/hello-world-ax.lib"
         }
     ]
 }

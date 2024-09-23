@@ -1,0 +1,52 @@
+{
+  "name": "my_agent",
+  "version": "0.0.0",
+  "lockFileVersion": "2",
+  "installStrategy": "strict",
+  "root": {
+    "name": "my_agent",
+    "version": "0.0.0",
+    "dependencies": {
+      "@ax/agent": "^0.6.0"
+    }
+  },
+  "packages": {
+    "@ax/agent": {
+      "name": "@ax/agent",
+      "version": "0.6.0",
+      "integrity": "sha512-LToZ//ATvnTs0Q3+2RQbFxOYssXWE1qEL/ur7Cqa3py3Evl257h1CaTuCsdMPpN3LyV/ABjVP/vZR0NVlREA2Q==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/agent/-/agent-0.6.0.tgz",
+      "dependencies": {
+        "@ax/agent-win-x64": "0.6.0",
+        "@ax/agent-linux-x64": "0.6.0"
+      }
+    },
+    "@ax/agent-win-x64": {
+      "name": "@ax/agent-win-x64",
+      "version": "0.6.0",
+      "integrity": "sha512-5rdGE/+ApB8jSZ2Vdf+ZNy2x5GKoonEjuq+JM2d/L23HPv7KARzUeVFOSyBY5gEplUjN8c2Projutdgn9nI9XA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/agent-win-x64/-/agent-win-x64-0.6.0.tgz",
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {}
+    },
+    "@ax/agent-linux-x64": {
+      "name": "@ax/agent-linux-x64",
+      "version": "0.6.0",
+      "integrity": "sha512-gVNA3P/mLfse4Mu3++3N7s2jm5xSzt5BX6GrwYcHjD/Ym3tguTtdTCsvFcnNZlstKqYLEcMN1sjddf9LD/v2Ew==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/agent-linux-x64/-/agent-linux-x64-0.6.0.tgz",
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {}
+    }
+  },
+  "workspaces": {}
+}

@@ -1,0 +1,5 @@
+name: my_agent
+version: 0.0.0
+type: generic
+dependencies:
+  "@ax/agent": ^0.6.0
